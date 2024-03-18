@@ -4,8 +4,7 @@ const movies = [
         genre: "Romance",
         duration: "195 min",
         year: "1997",
-        tickets: 10,
-        available: true    
+        tickets: 10,    
     },
 
     {
@@ -13,8 +12,7 @@ const movies = [
         genre: "Fantasy/Comedy",
         duration: "141 min",
         year: "2023",
-        tickets: 10,
-        available: true    
+        tickets: 10,    
     },
 
     {
@@ -22,8 +20,7 @@ const movies = [
         genre: "Comedy/Musical",
         duration: "114 min",
         year: "2023",
-        tickets: 10,
-        available: true    
+        tickets: 10,    
     },
     
     {
@@ -31,8 +28,7 @@ const movies = [
         genre: "Biography/Suspense",
         duration: "180 min",
         year: "2023",
-        tickets: 10,
-        available: true    
+        tickets: 10,    
     },
 
     {
@@ -40,8 +36,7 @@ const movies = [
         genre: "Animation/Comedy",
         duration: "94 min",
         year: "2024",
-        tickets: 10,
-        available: true    
+        tickets: 10,    
     },
 
     {
@@ -49,7 +44,6 @@ const movies = [
         genre: "Animation/Comedy",
         duration: "92 min",
         year: "2011",
-        tickets: 10,
-        available: true    
+        tickets: 10,    
     }
 ]
