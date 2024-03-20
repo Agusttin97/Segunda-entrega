@@ -38,6 +38,15 @@ while(op != 3){
         }else {
             alert("Sin resultados")
         }
+    }else if(op == 0){
+        alert("Bienvenido al panel de Administracion")
+        let opadmin = menuAdmin()
+        while(opadmin != 2){
+            if(opadmin == 1){
+                agregarPelicula(movies)
+            }
+            opadmin = menuAdmin()
+        }
     }
 
     op = menu()
@@ -51,7 +60,7 @@ alert("¡Gracias por visitar CoderMovies " + usuario + "!")
 // Funciones
 
 function menu(){// Menu, retorna una opcion
-    let opcion = prompt("===CoderMovies===\n\n1. Lista de Peliculas\n2. Buscar Pelicula\n3. Salir\n Seleccione opcion: ") 
+    let opcion = prompt("===CoderMovies===\n\n0. Menu Administracion\n1. Lista de Peliculas\n2. Buscar Pelicula\n3. Salir\n Seleccione opcion: ") 
     return opcion
 }
 
@@ -75,3 +84,18 @@ function mostrarPelicula(array,num){ //Muestra la peli seleccionada y retorna si
     return comprar
 }
 
+function agregarPelicula(array){
+    let titulo = prompt("Ingrese titulo: ")
+    let genero = prompt("Ingrese genero: ")
+    let duracion = prompt("Ingrese duracion: ")
+    let anio = prompt("Ingrese año: ")
+    let entradas = Number(prompt("Ingrese entradas disponibles: "))
+
+    array.push({title: titulo, genre: genero, duration: duracion, year: anio, entradas: 10})
+    alert("Pelicula agregada con exito")
+}
+
+function menuAdmin(){// Menu administracion, retorna una opcion
+    let opcion = prompt("===CoderMovies===\n\n1. Agregar Pelicula\n2. Salir\nSeleccione opcion: ") 
+    return opcion
+}

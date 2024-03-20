@@ -1,5 +1,7 @@
 // alert()
 
+// Script sin usar console.log solo mediante alert() -- INCOMPLETO -- 
+
 function menu(){
     let op = prompt("1. Lista de Peliculas\n2. Buscar Pelicula\n3. Salir\n\n Seleccione opcion:")
     return op
