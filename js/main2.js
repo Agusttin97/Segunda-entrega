@@ -5,6 +5,8 @@ let comprar;
 let tickets_disp;
 let cant_tickets;
 
+let op_filtro;
+
 let op = menu()
 while(op != 3){
     //Lista de peliculas
@@ -28,10 +30,19 @@ while(op != 3){
         }
         //Filtro de peliculas
     }else if(op == 2){
-        
+        op_filtro = prompt("===CoderMovies===\n\nIngrese nombre de pelicula: ")
+        const res_filtro = movies.filter((pelicula) => pelicula.title.includes(op_filtro))
+        if(res_filtro.length > 0) {
+            listaPeliculas(res_filtro)
+            alert("===CoderMovies===\n\nSe han encontrado " + res_filtro.length + " resultados.")
+        }else {
+            alert("Sin resultados")
+        }
     }
-    console.clear()
+
     op = menu()
+    console.clear()
+    
 }
 
 
