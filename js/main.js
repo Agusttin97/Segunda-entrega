@@ -1,74 +1,77 @@
-// alert()
-
-function menu(){
-    let op = prompt("1. Lista de Peliculas\n2. Buscar Pelicula\n3. Salir\n\n Seleccione opcion:")
-    return op
-}
-
-function listmovies(movies){
-    let listapeliculas = "";
-    let i = 1;
-    movies.forEach(movie => {
-        listapeliculas += i + ". " + movie.title + ' - ' + movie.year + "\n"
-        i++;
-    })
-    let pelicula = prompt("Cartelera: \n" + listapeliculas + "\n Seleccione una pelicula: ")
-    return pelicula
-}
-
-
-alert("¡Bienvenido a CoderMovies! \nLas mejores salas de cine del mundo.")
-let peli;
+let opmovie;
 let comprar;
-let ticket;
-let resfilter;
-let opfilter;
+let tickets_disp;
+let cant_tickets;
 
-let titlefilter;
-let i;
+let op_filtro;
 
-
-let op = menu();
-while(op != 3) {
+alert("¡Bienvenido a CoderMovies!")
+let usuario = prompt("===CoderMovies===\n\nIngrese su nombre: ")
+let op = menu()
+while(op != 3){
+    //Lista de peliculas
     if(op == 1){
-        peli = listmovies(movies)
-        comprar = prompt(
-            'Titulo: ' + movies[peli - 1].title + '\n' + 
-            'Genero: ' + movies[peli - 1].genre + '\n' +
-            'Duracion: ' + movies[peli - 1].duration + '\n' +
-            'Año: ' + movies[peli - 1].year + '\n' +
-            'Comprar tickets (S / N): '
-            )
-        if(comprar == 'S') {
-            if(movies[peli-1].tickets > 0){
-                ticket = prompt("Quedan " + movies[peli-1].tickets + " tickets disponibles.\n\n Ingrese cantidad de tickets: ")
-                if(ticket > movies[peli-1].tickets){
-                    alert("No hay tickets disponibles.")
+        listaPeliculas(movies)
+        opmovie = prompt("===CoderMovies===\n\nSeleccione pelicula:")
+        comprar = mostrarPelicula(movies,opmovie)
+        tickets_disp = movies[opmovie-1].tickets
+        if(comprar == 'S'){
+            if(movies[opmovie-1].tickets > 0){
+                cant_tickets = prompt("===CoderMovies===\n\n" + "Quedan " + movies[opmovie-1].tickets + " tickets disponibles\n\nIngrese cantidad de tickets: ")
+                if(cant_tickets <= movies[opmovie-1].tickets){
+                    movies[opmovie-1].tickets -= cant_tickets
+                    alert("===CoderMovies===\n\n¡Tickets comprados con exito!")
                 }else{
-                    movies[peli-1].tickets -= ticket
-                    alert("Tickets comprados.")
+                    alert("===CoderMovies===\n\nNo hay tickets disponibles")
                 }
             }else {
-                alert("No hay tickets disponibles para esta pelicula")
+                alert("===CoderMovies===\n\nTickets agotados")
             }
         }
+        //Filtro de peliculas
     }else if(op == 2){
-        let titlefilter = prompt("Ingrese titulo de pelicula: ")
-        resfilter = movies.filter((movie) =>
-        movie.title.includes(titlefilter))
-        if(resfilter.length > 0){
-            i=1
-            let listfilter = ""
-            resfilter.forEach(res => {
-                listfilter += i + '. ' + res.title + ' - ' + res.year + '\n'
-                i++
-            })
-            alert(listfilter)  
-        } else {
+        op_filtro = prompt("===CoderMovies===\n\nIngrese nombre de pelicula: ")
+        const res_filtro = movies.filter((pelicula) => pelicula.title.includes(op_filtro))
+        if(res_filtro.length > 0) {
+            listaPeliculas(res_filtro)
+            alert("===CoderMovies===\n\nSe han encontrado " + res_filtro.length + " resultados.")
+        }else {
             alert("Sin resultados")
         }
     }
-    op = menu()
-    }
 
-    alert("¡Gracias por visitar CoderMovies!")
+    op = menu()
+    console.clear()
+    
+}
+alert("¡Gracias por visitar CoderMovies " + usuario + "!")
+
+
+
+// Funciones
+
+function menu(){// Menu, retorna una opcion
+    let opcion = prompt("===CoderMovies===\n\n1. Lista de Peliculas\n2. Buscar Pelicula\n3. Salir\n Seleccione opcion: ") 
+    return opcion
+}
+
+function listaPeliculas(movies){ //Muestra todas las peliculas
+    let i = 1;
+    movies.forEach(movie => {
+        console.log(i + '. ' + movie.title + '  -  ' + movie.year)
+        i++
+    });
+}
+
+function mostrarPelicula(array,num){ //Muestra la peli seleccionada y retorna si se desea comprar entradas
+    let comprar = prompt(
+        "===CoderMovies===\n\n" + 
+        "Titulo: " + array[num - 1].title + "\n" +
+        "Genero: " + array[num - 1].genre + "\n" +
+        "Duracion: " + array[num - 1].duration + "\n" +
+        "Año: " + array[num - 1].year + "\n\n" +
+        "¿Comprar tickets?(S/N): ")
+
+    return comprar
+}
+
